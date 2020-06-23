@@ -22,7 +22,7 @@ steps:
     git clone https://github.com/nccgroup/ScoutSuite
     cd ScoutSuite
     pip install -r requirements.txt
-    az login -u ${{ parameters.u }} -p ${{ parameters.p }}
+    az login -u $(u) -p $(p)
     python scout.py azure --cli
   displayName: 'Run ScoutSuite'
 
