@@ -1,0 +1,32 @@
+trigger:
+- none
+
+pool:
+  vmImage: 'ubuntu-latest'
+strategy:
+  matrix:
+    Python37:
+      python.version: '3.7'
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '$(python.version)'
+  displayName: 'Set Python version $(python.version)'
+
+- script: python -m pip install --upgrade pip
+  displayName: 'Update PIP'
+
+- script:  pip install -r requirements.txt 
+  displayName: 'Install scan wrapper dependencies'
+
+- script: cd $(System.DefaultWorkingDirectory); git clone https://github.com/nccgroup/ScoutSuite; cd ScoutSuite
+  displayName: 'Clone ScoutSuite'
+
+- script: pip install -r requirements.txt
+  displayName: 'Install ScoutSuite dependencies'
+
+- script: python scout.py --help
+  displayName: 'Run ScoutSuite'
+
+
