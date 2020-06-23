@@ -17,8 +17,8 @@ steps:
 - script: python -m pip install --upgrade pip
   displayName: 'Update PIP'
 
-- script:  pip install -r requirements.txt 
-  displayName: 'Install scan wrapper dependencies'
+#- script:  pip install -r requirements.txt 
+#  displayName: 'Install scan wrapper dependencies'
 
 - script: cd $(System.DefaultWorkingDirectory); git clone https://github.com/nccgroup/ScoutSuite
   displayName: 'Clone ScoutSuite'
