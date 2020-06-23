@@ -8,10 +8,6 @@ strategy:
     Python37:
       python.version: '3.7'
 
-parameters:
-  - name: u
-  - name: p
-
 steps:
 - task: UsePythonVersion@0
   inputs:
