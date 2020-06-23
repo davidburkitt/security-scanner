@@ -22,6 +22,7 @@ steps:
     git clone https://github.com/nccgroup/ScoutSuite
     cd ScoutSuite
     pip install -r requirements.txt
+    az login -u $(u) -p $(p)
     python scout.py azure --cli
     tail -1 scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js | python3 -mjson.tool 
   displayName: 'Run ScoutSuite'
