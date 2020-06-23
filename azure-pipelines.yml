@@ -20,13 +20,13 @@ steps:
 - script:  pip install -r requirements.txt 
   displayName: 'Install scan wrapper dependencies'
 
-- script: cd $(System.DefaultWorkingDirectory); git clone https://github.com/nccgroup/ScoutSuite; cd ScoutSuite
+- script: cd $(System.DefaultWorkingDirectory); git clone https://github.com/nccgroup/ScoutSuite
   displayName: 'Clone ScoutSuite'
 
 - script: pip install -r requirements.txt
   displayName: 'Install ScoutSuite dependencies'
 
-- script: python scout.py --help
+- script: cd ScoutSuite; python scout.py --help
   displayName: 'Run ScoutSuite'
 
 
