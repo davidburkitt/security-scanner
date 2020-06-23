@@ -28,6 +28,5 @@ steps:
 
 - script: python scout.py --help
   displayName: 'Run ScoutSuite'
-  displayName: 'Use Python $(python.version)'
 
 
