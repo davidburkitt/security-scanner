@@ -8,6 +8,10 @@ strategy:
     Python37:
       python.version: '3.7'
 
+parameters:
+  - name: u
+  - name: p
+
 steps:
 - task: UsePythonVersion@0
   inputs:
@@ -22,7 +26,7 @@ steps:
     git clone https://github.com/nccgroup/ScoutSuite
     cd ScoutSuite
     pip install -r requirements.txt
-    az login -u ${{ parameters.username }} -p ${{ parameters.password }}
+    az login -u ${{ parameters.u }} -p ${{ parameters.p }}
     python scout.py azure --cli
   displayName: 'Run ScoutSuite'
 
