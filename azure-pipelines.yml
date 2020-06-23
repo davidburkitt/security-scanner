@@ -28,5 +28,11 @@ steps:
 
 - script: python scout.py --help
   displayName: 'Run ScoutSuite'
+  displayName: 'Use Python $(python.version)'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install -r requirements.txt
+  displayName: 'Install dependencies'
 
 
