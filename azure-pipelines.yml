@@ -24,7 +24,7 @@ steps:
     pip install -r requirements.txt
     az login -u $(u) -p $(p)
     python scout.py azure --cli
-    tail -1 ./scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js > $(System.DefaultWorkingDirectory)/results.json
+    tail -n +2 ./scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js > $(System.DefaultWorkingDirectory)/results.json
   displayName: 'Run ScoutSuite'
 
 # Copy results to storage
