@@ -9,6 +9,13 @@ strategy:
       python.version: '3.7'
 
 steps:
+- task: AzureCLI@2
+  displayName: Azure CLI login
+  inputs:
+    azureSubscription: $(s)
+    scriptLocation: inlineScript
+    inlineScript: |
+      az login -u $(u) -p $(p)
 
 - task: UsePythonVersion@0
   inputs:
@@ -23,7 +30,6 @@ steps:
     git clone https://github.com/nccgroup/ScoutSuite
     cd ScoutSuite
     pip install -r requirements.txt
-    az login -u $(u) -p $(p)
     python scout.py azure --cli
   displayName: 'Run ScoutSuite'
 
