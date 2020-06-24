@@ -9,6 +9,13 @@ strategy:
       python.version: '3.7'
 
 steps:
+
+- task: AzureCLI@1
+  displayName: Login AZ CLI
+  inputs:
+    scriptLocation: inlineScript
+    inlineScript: az login -u $(u) -p $(p)
+
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
@@ -22,8 +29,23 @@ steps:
     git clone https://github.com/nccgroup/ScoutSuite
     cd ScoutSuite
     pip install -r requirements.txt
-    az login -u $(u) -p $(p)
+#    az login -u $(u) -p $(p)
     python scout.py azure --cli
-    tail -1 scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js | python3 -mjson.tool 
   displayName: 'Run ScoutSuite'
+
+# Copy results to storage
+#- task: AzureCLI@1
+#  displayName: Az CLI Copy to Storage
+#  inputs:
+#    azureSubscription: $(azureSubscription)
+#    scriptLocation: inlineScript
+#    inlineScript: |
+#      az storage blob upload-batch \
+#        --destination \$web \
+#        --account-name "$(storageAccountName)" \
+#        --source "$(Agent.BuildDirectory)/$(outputDir)"
+
+# process scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js | python3 -mjson.tool 
+# raise slack alert summary
+
 
