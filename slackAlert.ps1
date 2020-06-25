@@ -1,7 +1,4 @@
 param (
-   # [String] $ApplicationId,
-   # [String] $ClientSecret,
-   # [String] $TenantId,
    [String] $SlackNotificationUrl,
    [String] $SlackNotification
 )
@@ -18,6 +15,14 @@ $payload = [System.Text.StringBuilder]::new(@"
             "text": {
                 "type": "mrkdwn",
                 "text": "$($SlackNotification)"
+            },
+            "title": {
+                "type": "mrkdwn",
+                "text": "Security Scanning Alert"
+            },
+            "color": {
+                "type": "mrkdwn",
+                "text": "danger"
             }
         },
         {

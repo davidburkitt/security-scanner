@@ -43,7 +43,7 @@ steps:
 - script: |
     pip install -r requirements.txt
     python findInJsonPath.py -file results.json -path 'services.*.findings.*.flagged_items,description,items' -operand 1 -operator '<' -index flagged_items | tee -a results.json
-    flaggedItems=`cat results.json | wc -l`
+    flaggedItems=`cat results.json | grep $(subscription) | wc -l` flagged items
     echo "##vso[task.setvariable variable=flaggedItems;]$flaggedItems"
 
 # raise slack alert summary
