@@ -21,6 +21,20 @@ $payload = [System.Text.StringBuilder]::new(@"
             "type": "divider"
         }
     ]
+    "attachments": [
+        {
+            "color": "#2eb886",
+            "title": "Security Scanning Alert",
+            "text": "$($SlackNotification)",
+            "fields": [
+                {
+                    "title": "Priority",
+                    "value": "High",
+                    "short": false
+                }
+            ],
+        }
+  ]
 }
 "@)
 #$payload.Append("]}")
