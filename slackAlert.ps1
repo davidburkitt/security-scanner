@@ -15,20 +15,14 @@ $payload = [System.Text.StringBuilder]::new(@"
             "text": {
                 "type": "mrkdwn",
                 "text": "$($SlackNotification)"
-            },
-            "title": {
-                "type": "mrkdwn",
-                "text": "Security Scanning Alert"
-            },
-            "color": {
-                "type": "mrkdwn",
-                "text": "danger"
             }
         },
         {
             "type": "divider"
         }
+    ]
+}
 "@)
-$payload.Append("]}")
+#$payload.Append("]}")
 
 Send-SlackMessage -Message $payload.ToString()
