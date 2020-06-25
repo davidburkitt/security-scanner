@@ -2,7 +2,7 @@ param (
    # [String] $ApplicationId,
    # [String] $ClientSecret,
    # [String] $TenantId,
-   [String] $SlackNotificationUrl
+   [String] $SlackNotificationUrl,
    [String] $SlackNotification
 )
 
