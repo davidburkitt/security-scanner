@@ -42,8 +42,16 @@ steps:
 # process scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js | python3 -mjson.tool
 - script: |
     pip install -r requirements.txt
-    python findInJsonPath.py -file results.json -path 'services.*.findings.*.flagged_items,description,items' -operand 1 -operator '<' -index flagged_items
+    python findInJsonPath.py -file results.json -path 'services.*.findings.*.flagged_items,description,items' -operand 1 -operator '<' -index flagged_items | tee -a results.json
+    flaggedItems=`cat results.json | wc -l`
+    echo "##vso[task.setvariable variable=flaggedItems;]$flaggedItems"
 
 # raise slack alert summary
+- task: PowerShell@2
+  displayName: Run Slack Alert PWSH
+  inputs:
+    targetType: filePath
+    filePath: 'slackAlert.ps1'
+    arguments: '-SlackNotificationUrl $(SLACK_WEBHOOK) -SlackNotification $(flaggedItems)'
 
 
