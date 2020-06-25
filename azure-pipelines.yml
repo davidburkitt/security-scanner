@@ -52,6 +52,6 @@ steps:
   inputs:
     targetType: filePath
     filePath: 'slackAlert.ps1'
-    arguments: '-SlackNotificationUrl $(SLACK_WEBHOOK) -SlackNotification $(flaggedItems)'
+    arguments: '-SlackNotificationUrl $(SLACK_WEBHOOK) -SlackNotification "$(flaggedItems) issues detected in $(subscription)"'
 
 

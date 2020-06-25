@@ -9,10 +9,22 @@ function Send-SlackMessage([string]$Message) {
 
 $payload = [System.Text.StringBuilder]::new(@"
 {
+	"blocks": [
+        {
+            "type": "section",
+            "text": {
+                "type": "mrkdwn",
+                "text": "Security Scanning Alert"
+            }
+        },
+        {
+            "type": "divider"
+        }
+    ],
     "attachments": [
         {
-            "color": "#2eb886",
-            "title": "Security Scanning Alert",
+            "color": "#FF0000",
+            "title": "Vulnerabiltiies detected",
             "text": "$($SlackNotification)",
         }
     ]
