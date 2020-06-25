@@ -42,7 +42,7 @@ steps:
 # process scoutsuite-report/scoutsuite-results/scoutsuite_results_azure-tenant-*.js | python3 -mjson.tool
 - script: |
     pip install -r requirements.txt
-    python findInJsonPath.py results.json 'services.*.findings.*.flagged_items,description,items'
+    python findInJsonPath.py results.json -path 'services.*.findings.*.flagged_items,description,items' -marker 1 
 
 # raise slack alert summary
 
