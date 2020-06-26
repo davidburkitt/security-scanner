@@ -45,6 +45,7 @@ steps:
     python findInJsonPath.py -file results.json -path 'services.*.findings.*.flagged_items,description,items' -operand 1 -operator '<' -index flagged_items | tee -a results.json
     flaggedItems=`cat results.json | grep $(subscription) | wc -l`
     echo "##vso[task.setvariable variable=flaggedItems;]$flaggedItems"
+  displayName: 'Parse ScoutSuite results'
 
 - task: PythonScript@0
   inputs:
