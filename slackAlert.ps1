@@ -25,7 +25,7 @@ $payload = [System.Text.StringBuilder]::new(@"
         {
             "color": "#FF0000",
             "title": "Vulnerabiltiies detected",
-            "text": "$($SlackNotification)",
+            "text": "$($SlackNotification)"
         }
     ]
 }

@@ -46,12 +46,18 @@ steps:
     flaggedItems=`cat results.json | grep $(subscription) | wc -l`
     echo "##vso[task.setvariable variable=flaggedItems;]$flaggedItems"
 
-# raise slack alert summary
-- task: PowerShell@2
-  displayName: Run Slack Alert PWSH
+- task: PythonScript@0
   inputs:
-    targetType: filePath
-    filePath: 'slackAlert.ps1'
-    arguments: '-SlackNotificationUrl $(SLACK_WEBHOOK) -SlackNotification "$(flaggedItems) issues detected in $(subscription)"'
+    scriptSource: filePath
+    arguments: -uri $(SLACK_WEBHOOK) -header "Security Alert Scanning" -title "Vulnerabilities Detected" -text "$(flaggedItems) issues identified" -colour "#FF0000"
+  displayName: 'Slack notification'
+
+# raise slack alert summary
+#- task: PowerShell@2
+#  displayName: Run Slack Alert PWSH
+#  inputs:
+#    targetType: filePath
+#    filePath: 'slackAlert.ps1'
+#    arguments: '-SlackNotificationUrl $(SLACK_WEBHOOK) -SlackNotification "$(flaggedItems) issues detected in $(subscription)"'
 
 
