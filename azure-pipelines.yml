@@ -49,7 +49,8 @@ steps:
 - task: PythonScript@0
   inputs:
     scriptSource: filePath
-    arguments: -uri $(SLACK_WEBHOOK) -header "Security Alert Scanning" -title "Vulnerabilities Detected" -text "$(flaggedItems) issues identified" -colour "#FF0000"
+    scriptPath: slackAlert.py
+    arguments: -uri $(SLACK_WEBHOOK) -header "Security Alert Scanning" -title "Vulnerabilities Detected" -text "$(flaggedItems) issues detected in $(subscription)" -colour "#FF0000"
   displayName: 'Slack notification'
 
 # raise slack alert summary
